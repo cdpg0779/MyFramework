@@ -48,7 +48,8 @@ router.get('/main', function (req, res, next) {
 				'role': '',
 				'permissions': 'noLogin'
 			};
-			res.render('index', { title: '成都市交通运输行政执法总队吊销巡游车从业资格及非法客运经营（仿冒巡游车营运）信息查询系统', usr_id: userid, usr_name: name, usr_unit: unit, type: "", role: '' });
+			//title里面填写系统名称
+			res.render('index', { title: '', usr_id: userid, usr_name: name, usr_unit: unit, type: "", role: '' });
 			return;
 		}
 	}
@@ -58,7 +59,7 @@ router.get('/main', function (req, res, next) {
 		return;
 	}
 	console.log(req.session.user.id);
-	res.render('index', { title: '成都市交通运输行政执法总队吊销巡游车从业资格及非法客运经营（仿冒巡游车营运）信息查询系统', usr_id: req.session.user.id, usr_name: req.session.user.name, usr_unit: req.session.user.unit, type: "123", role: req.session.user.role });
+	res.render('index', { title: '', usr_id: req.session.user.id, usr_name: req.session.user.name, usr_unit: req.session.user.unit, type: "123", role: req.session.user.role });
 });
 
 router.get('/sentiment', function (req, res, next) {
