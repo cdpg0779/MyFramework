@@ -28,34 +28,7 @@ router.get('/', function (req, res, next) {
     res.render('route');
 });
 
-router.post('/GetPointsByUserid', function (req, res, next) {
-    var b = GetUserPermissions(req);
-    if (!b) {
-        res.redirect('/');
-        return;
-    }
-    var userid = req.body.userid;
-    var gettime = req.body.gettime;
-    var sql = "select * from t_coordinate where userid=? and date_format(uploadtime,'%Y-%m-%d')=? order by uploadtime asc";
-    var pms = [userid, gettime];
-    mysqlClient.query(sql, pms, function (err, recs) {
-        if (err) {
-            console.log(err);
-            res.send(err);
-            return;
-        }
-        var dataByRenturn = [];
-        if (recs.length > 0) {
-            for (var i = 0; i < recs.length; i++) {
-                var element = recs[i];
-                dataByRenturn.push({ longitude: element.longitude, latitude: element.latitude, uploadtime: element.uploadtime, addr: element.addr, remark: element.remark });
-            }
-        }
-        var strjson = { rows: dataByRenturn };
-        strjson = JSON.stringify(strjson);
-        res.send(strjson);
-    });
-});
+
 
 router.post('/getUsers', function (req, res, next) {
     var b = GetUserPermissions(req);
